@@ -4,10 +4,22 @@ import { Draggable } from 'react-beautiful-dnd';
 
 const Container = styled.div`
   border: 1px solid lightgrey;
-  border-radius: 2px;
+  border-radius: 50%;
   padding: 8px;
   margin-bottom: 8px;
   background-color: ${props => (props.isDragging ? 'lightblue' : 'white')};
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:focus {
+    outline: none;
+    border-color: red;
+    border-width: 3;
+  }
 `;
 
 export default class Task extends React.Component {
@@ -21,7 +33,7 @@ export default class Task extends React.Component {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            {this.props.task.content}
+            {this.props.task.content[0]}
           </Container>
         )}
       </Draggable>
