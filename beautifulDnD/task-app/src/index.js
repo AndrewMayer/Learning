@@ -20,43 +20,20 @@ class App extends React.Component {
       return;
     }
 
-    if (type === 'column') {
-      const newColumnOrder = Array.from(this.state.columnOrder);
-      newColumnOrder.splice(source.index, 1);
-      newColumnOrder.splice(destination.index, 0, draggableId);
-
-      const newState = {
-        ...this.state,
-        columnOrder: newColumnOrder
-      };
-      this.setState(newState);
-      return;
-    }
-
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
       return;
     }
-    console.log('source is');
-    console.log(source);
+
     const home = this.state.columns[source.droppableId];
-    console.log('Home is');
-    console.log(home);
     const foreign = this.state.columns[destination.droppableId];
-    // const start = this.state.columns[source.droppableId];
-    // const finish = this.state.columns[destination.droppableId];
 
     if (home === foreign) {
       const newTaskIds = Array.from(home.taskIds);
       newTaskIds.splice(source.index, 1);
       newTaskIds.splice(destination.index, 0, draggableId);
-
-      // const newColumn = {
-      //   ...start,
-      //   taskIds: newTaskIds
-      // };
 
       const newHome = {
         ...home,
@@ -107,6 +84,7 @@ class App extends React.Component {
       }
     };
     this.setState(newState);
+    return;
   };
 
   render() {
